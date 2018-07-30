@@ -8,7 +8,14 @@ import { PokemonsComponent } from './pages/pokemons/pokemons.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BerriesComponent } from './pages/berries/berries.component';
 
-import { AppRoutingModule } from './app.routing.module'
+import { AppRoutingModule } from './app.routing.module';
+import { HttpClientModule } from '@angular/common/http'; //Importar para a service funcionar
+import { FormsModule } from '@angular/forms';
+import { TrainerComponent } from './pages/trainer/trainer.component';
+import { TrainerService } from './services/trainer/trainer.service';
+import { ModalComponent } from './modal/modal.component';
+
+import { PokemonService } from './service/pokemon.service';
 
 
 
@@ -19,14 +26,21 @@ import { AppRoutingModule } from './app.routing.module'
     PokemonsComponent,
     HomeComponent,
     BerriesComponent,
+    TrainerComponent,
+    ModalComponent
 
   ],
   imports: [
     BrowserModule,
     MaterializeModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    PokemonService,
+    TrainerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

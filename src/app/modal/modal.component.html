@@ -1,0 +1,68 @@
+<div class="row">
+  <button class="waves-effect waves-light btn modal-trigger" (click)="abreModal()">Modal</button>
+
+  <div class="modal" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions"> 
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <div class="row">
+	<form #login="ngForm" (ngSubmit)="onSubmit(login)" class="col l12">
+		<div class="row">
+			<div class="input-field col l6">
+				<input id="nome" type="text" name="nome" ngModel required #nome="ngModel" >
+				<label for="nome">Nome</label>
+			</div>
+			<div class="input-field col l2">
+				<input id="idade" type="number" name="idade" ngModel required #idade="ngModel" (blur)="checkAge(idade)">
+				<label for="idade">Idade</label>
+			</div>
+			<div class="input-field col l4">
+				<input id="numero" type="text" name="numero" ngModel required #numero="ngModel" (blur)="checkNumber(numero)">
+				<label for="numero">Número de Identificação</label>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="input-field col l6">
+				<input id="email" type="text" name="email" ngModel required #email="ngModel" >
+				<label for="email">Email</label>
+			</div>
+			<div class="input-field col l6">
+				<input id="regiao" type="text" name="regiao" ngModel required #regiao="ngModel" >
+				<label for="regiao">Região de Início da Jornada</label>
+			</div>
+			<div class="input-field col l6">
+				<input id="pokemon" type="text" name="pokemon" ngModel required #pokemon="ngModel" (blur)="checkPokemon(pokemon)">
+				<label for="pokemon">Pokemon Inicial</label>
+			</div>
+
+			<div class="input-field col l6">
+				<input id="outras" type="text" name="outras" ngModel #outras="ngModel" >
+				<label for="outras">Outras regiões por onde pretende se aventurar</label>
+			</div>
+		</div>
+		<div *ngIf="(nome.invalid && nome.touched) || (idade.invalid && idade.touched) || (numero.invalid && numero.touched) || (email.invalid && email.touched) || (regiao.invalid && regiao.touched) || (pokemon.invalid && pokemon.touched)">
+			<p>Campo(s) obrigatório(s).</p>
+		</div>
+		<div *ngIf="ageError && idade.touched">
+			<p>Idade inválida.</p>
+		</div>
+		<div *ngIf="numberError && numero.touched">
+			<p>O número de identificação tem que ter 8 caracteres.</p>
+		</div>
+		<div *ngIf="pokemonsError && pokemon.touched">
+			<p>Esse pokemon não existe.</p>
+		</div>
+		<div class="row">
+			<button class="waves-effect waves-light btn" type="submit" >LOGIN</button>
+		</div>
+	</form>
+	  </div>
+    <div class="modal-footer">
+      <a class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+      <a class="waves-effect waves-green btn-flat" (click)="fechaModal()">Close</a>
+    </div>
+  </div>
+</div>
+
+	
+</div>

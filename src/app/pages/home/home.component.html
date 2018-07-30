@@ -1,4 +1,7 @@
-<app-navbar></app-navbar> <!-- Chamando a navbar em um componente separado -->
-<p>
-  home works!
-</p>
+<app-navbar></app-navbar> 
+
+
+<div *ngFor="let trainer of trainers">
+	{{trainer.nome}}, {{trainer.codigo}}, {{trainer.pokemon}}
+</div>
+
