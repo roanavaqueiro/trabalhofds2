@@ -8,23 +8,14 @@ import { PokemonService } from '../../service/pokemon.service';
 })
 export class TrainerComponent implements OnInit {
 
-  constructor(public pkmnService: PokemonService) {
-  this.id = 0; }
+  pokemonsError: boolean = false;
+  pokemons;
+
+  constructor(public pokemonservice: PokemonService) {}
 
   ngOnInit() {
   }
-	getPokemon(){
-  console.log("Entrei na função")
-    this.id++;
-    this.pkmnService.getPokemon(this.id)
-  .subscribe(
-  (res)=>{
-    this.pokemons.push(res);
-  console.log(res);
 
-  }
-
-  }
   checkPokemon(pokemon) {
     this.pokemonservice.checkPokemon(pokemon.value).subscribe(
       (res)=>{

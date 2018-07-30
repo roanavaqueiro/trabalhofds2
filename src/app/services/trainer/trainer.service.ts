@@ -1,13 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 
 export class TrainerService {
 
@@ -31,7 +29,8 @@ getTrainer():Observable<any>{
 	return this.http.get(this.trainerUrl).pipe(map(res=>res));
 }
 
-deleteTrainer (nome:string,pokemon:string,codigo:number):Observable<any>{
+deleteTrainer (id):Observable<any>{
 	return this.http. delete(this.trainerUrl + id).pipe(map(res=>res));
+}
 }
 

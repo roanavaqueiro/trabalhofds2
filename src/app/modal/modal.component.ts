@@ -9,12 +9,13 @@ import { TrainerService } from '../services/trainer/trainer.service';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
-modalActions = new EventEmitter<string|MaterializeAction>();
-ageError: boolean = false
-numberError: boolean = false
+  modalActions = new EventEmitter<string|MaterializeAction>();
+  ageError: boolean = false
+  numberError: boolean = false;
+  pokemons;
+  pokemonsError: boolean = false;
 
-  constructor(public pkmnService: PokemonService,public trainerService: TrainerService) {
-  this.id = 0; }
+  constructor(public pkmnService: PokemonService,public trainerService: TrainerService) { }
 
   ngOnInit() {}
 
@@ -39,7 +40,7 @@ fechaModal() {
 }
 onSubmit(login) {
 	console.log(login);
-  this.trainerService.createTrainer(login.value.nome,login.value.pokemon,login.value.numero).subscribe(res=>console.log(res));
+  this.trainerService.criarTrainer(login.value.nome,login.value.pokemon,login.value.numero).subscribe(res=>console.log(res));
 
 }
 checkAge(idade) {

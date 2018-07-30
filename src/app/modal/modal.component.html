@@ -1,6 +1,8 @@
 <div class="row">
+	<!-- Modal Trigger -->
   <button class="waves-effect waves-light btn modal-trigger" (click)="abreModal()">Modal</button>
 
+  <!-- Modal Structure -->
   <div class="modal" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions"> 
     <div class="modal-content">
       <h4>Modal Header</h4>
@@ -26,34 +28,55 @@
 				<input id="email" type="text" name="email" ngModel required #email="ngModel" >
 				<label for="email">Email</label>
 			</div>
-			<div class="input-field col l6">
-				<input id="regiao" type="text" name="regiao" ngModel required #regiao="ngModel" >
-				<label for="regiao">Região de Início da Jornada</label>
+			<div class="col l6">
+			<p>Região de Início da Jornada</p>
+
+				<input id="regiao" type="radio" name="regiao" required ngModel value="1" #regiao="ngModel">
+				<label for="regiao">Nordeste</label><br>
+				<input id="regiao2" type="radio" name="regiao" ngModel value="2">
+				<label for="regiao2">Sudeste</label><br>
+				<input id="regiao3" type="radio" name="regiao" ngModel value="3">
+				<label for="regiao3">Centro-Oeste</label><br>
+				<input id="regiao4" type="radio" name="regiao" ngModel value="4">
+				<label for="regiao4">Norte</label><br>
+				<input id="regiao5" type="radio" name="regiao" ngModel value="5">
+				<label for="regiao5">Sul</label><br>
 			</div>
 			<div class="input-field col l6">
 				<input id="pokemon" type="text" name="pokemon" ngModel required #pokemon="ngModel" (blur)="checkPokemon(pokemon)">
 				<label for="pokemon">Pokemon Inicial</label>
 			</div>
-
-			<div class="input-field col l6">
-				<input id="outras" type="text" name="outras" ngModel #outras="ngModel" >
-				<label for="outras">Outras regiões por onde pretende se aventurar</label>
+			<div *ngIf="pokemons">
+				<img [src]="pokemons.sprites.front_default">
+			</div>
+			<div class=" col l6">
+			 <p> Outras regiões por onde pretende se aventurar </p>
+				<input id="outras1" type="checkbox" name="outras1" [disabled]="regiao.value == 1" ngModel #outras="ngModel" >
+				<label for="outras1">Nordeste</label>
+				<input id="outras2" type="checkbox" name="outras2" [disabled]="regiao.value == 2" ngModel #outras="ngModel" >
+				<label for="outras2">Sudeste</label>
+				<input id="outras3" type="checkbox" name="outras3" [disabled]="regiao.value == 3" ngModel #outras="ngModel" >
+				<label for="outras3">Centro-Oeste</label>
+				<input id="outras4" type="checkbox" name="outras4" [disabled]="regiao.value == 4" ngModel #outras="ngModel" >
+				<label for="outras4">Norte</label>
+				<input id="outras5" type="checkbox" name="outras5" [disabled]="regiao.value == 5" ngModel #outras="ngModel" >
+				<label for="outras5">Sul</label>
 			</div>
 		</div>
 		<div *ngIf="(nome.invalid && nome.touched) || (idade.invalid && idade.touched) || (numero.invalid && numero.touched) || (email.invalid && email.touched) || (regiao.invalid && regiao.touched) || (pokemon.invalid && pokemon.touched)">
 			<p>Campo(s) obrigatório(s).</p>
 		</div>
 		<div *ngIf="ageError && idade.touched">
-			<p>Idade inválida.</p>
+			<p>Ops, você ainda é muito novinho (a).</p>
 		</div>
 		<div *ngIf="numberError && numero.touched">
 			<p>O número de identificação tem que ter 8 caracteres.</p>
 		</div>
 		<div *ngIf="pokemonsError && pokemon.touched">
-			<p>Esse pokemon não existe.</p>
+			<p>Esse pokemon não existe, não vale inventar hein.</p>
 		</div>
 		<div class="row">
-			<button class="waves-effect waves-light btn" type="submit" >LOGIN</button>
+			<button class="waves-effect waves-light btn" [disabled]="login.invalid || passwordError" type="submit" >LOGIN</button>
 		</div>
 	</form>
 	  </div>
